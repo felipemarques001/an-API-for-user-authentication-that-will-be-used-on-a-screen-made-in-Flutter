@@ -16,7 +16,7 @@ class UserRepository {
         })
     }
 
-    // Pelo o que eu entendi, se houver usuário retorna o resultado, se não houver é retornado uma lista vazia
+    // Se houver usuário retorna o resultado, se não houver é retornado uma lista vazia
     findByUsername(username) {
         const sql = "SELECT * FROM tb_users where username = ?"
         return new Promise((resolve, reject) => {

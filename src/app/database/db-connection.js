@@ -2,10 +2,10 @@ import mysql from 'mysql'
 
 const connection = mysql.createConnection({
     host: 'localhost',
-    port: '3306',
+    port: '',
     user: '',
     password: '',
-    database: ''
+    database: 'db_teste_estagio'
 })
 
 export default connection

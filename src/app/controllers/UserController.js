@@ -9,7 +9,7 @@ class UserController {
         // Verifica se há usuário com o username fornecido
         const existsUser = await UserService.findUserByUsername(username)
         if(existsUser.length > 0) {
-            return res.status(400).json({ 'response': 'Username já em uso!'})
+            return res.status(400).json({ 'response': 'Credencial inválida!'})
         }
 
         // Realiza a criptografia da senha
@@ -31,7 +31,7 @@ class UserController {
         // Verifica se há usuário cadastrado com o username informado
         const userFounded = await UserService.findUserByUsername(username)
         if(userFounded.length === 0) {
-            return res.status(404).json({ 'response': 'Nenhum usuário encontrado com o username informado'})
+            return res.status(404).json({ 'response': 'Usuário não encontrado!'})
         }
 
         // Convertendo os dados do usuário encontrado para um objeto
@@ -40,7 +40,7 @@ class UserController {
         // Realiza a comparação de passwords
         const passwordIsValid = await UserService.comparePassword(password, user[0]['password'])
         if(!passwordIsValid) {
-            return res.status(400).json({ 'response' : 'Senha inválida!' })
+            return res.status(400).json({ 'response' : 'Credenciais inválidas!' })
         }
 
         // Se tudo correu bem, o usuário está logado
@@ -49,19 +49,3 @@ class UserController {
 }
 
 export default new UserController()
-
-
-// Chame a função de criação de usuário
-// return database.criarUsuario(username, password)
-// .then((results) => {
-//   console.log('Usuário criado com sucesso:', results);
-//   res.status(200).send('Usuário criado com sucesso');
-// })
-// .catch((err) => {
-//   console.error('Erro ao criar usuário:', err);
-//   res.status(500).send('Erro interno ao criar usuário');
-// })
-// .finally(() => {
-//   // Desconecte do banco após a conclusão da operação
-//   database.desconectarDoBanco();
-// });
